@@ -1,0 +1,15 @@
+data = [{name:"a", age:"1"},{name:"b", age:"2"},{name:"c", age:"3"}];
+
+function searchBy(string) {
+    var resultArr = [];
+
+    function _filter(elem) {
+        var keys = Object.keys(elem);
+        for (var i = 0; i < keys.length - 1; i++) {
+            if (elem[keys[i]].toLowerCase().indexOf(string.toLowerCase()) !== -1) {
+                return true;
+            }
+        }
+    }
+    resultArr = data.filter(_filter);
+    }
