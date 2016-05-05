@@ -1,3 +1,4 @@
+//data
 'use strict';
 let counter = 0;
 function autoInc(){
@@ -22,3 +23,20 @@ class Users {
 }
 
 module.exports = new Users();
+
+//users
+var express = require('express');
+var router = express.Router();
+var data = require('./data.js')
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.json(data.get());
+});
+router.post('/', function(req, res, next){
+  res.send(data.add());
+});
+router.delete('/:index', function(req, res, next){
+  res.send(data.delete(req.params.index));
+});
+
+module.exports = router;
