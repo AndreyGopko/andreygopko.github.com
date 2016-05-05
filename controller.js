@@ -4,10 +4,9 @@ export default class HomeController {
     this.ToDoService = ToDoService;
   }
   $onInit() {
-    this.ToDoService.get()
+    this.ToDoService.getRows()
     .then(data => {
       this.rows = data;
-      this.ToDoService.getRows(data)
     });
   }
   addCard() {
