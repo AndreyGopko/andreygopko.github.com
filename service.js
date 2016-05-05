@@ -4,14 +4,13 @@ export default class ToDoService {
     this.$http = $http;
     this.rows = []
   }
-  get(){
+  getRows(){
     return this.$http.get('http://localhost:3000/users')
-    .then((response) => response.data);
+    .then((response) => {
+      return this.rows = response.data;
+    });
   }
 
-  getRows(data) {
-    this.rows = data;
-  }
   addRow() {
     this.$http.post('http://localhost:3000/users')
     .then((data) => {
