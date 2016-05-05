@@ -1,18 +1,24 @@
-var express = require('express');
-var router = express.Router();
-var data = [];
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.json(data);
-});
-router.post('/:name', function(req, res, next){
-  data.push({"name": req.params.name});
-  res.send('post done')
-});
-router.delete('/:name', function(req, res, next){
-  var index = data.findIndex(function(e){return e.name === req.params.name});
-  data.splice(index, 1);
-  res.send('delete done')
-});
+'use strict';
+let counter = 0;
+function autoInc(){
+  return counter++;
+}
+class Users {
+  constructor() {
+    this.data = [];
+  }
+  get() {
+    return this.data;
+  }
+  add() {
+    let temp = {};
+    temp.id = autoInc();
+    this.data.push([temp]);
+    return [temp];
+  }
+  delete(index) {
+    return this.data.splice(index, 1);
+  }
+}
 
-module.exports = router;
+module.exports = new Users();
